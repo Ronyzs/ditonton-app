@@ -1,16 +1,16 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:ditonton/common/constants.dart';
 import 'package:ditonton/domain/entities/tvseries.dart';
-import 'package:ditonton/presentation/pages/popular_tvseries_page.dart';
+import 'package:ditonton/presentation/pages/tvseries/popular_tvseries_page.dart';
 import 'package:ditonton/common/state_enum.dart';
-import 'package:ditonton/presentation/pages/top_rated_tvseries_page.dart';
-import 'package:ditonton/presentation/pages/tvseries_detail_page.dart';
-import 'package:ditonton/presentation/pages/tvseries_search_page.dart';
+import 'package:ditonton/presentation/pages/tvseries/top_rated_tvseries_page.dart';
+import 'package:ditonton/presentation/pages/tvseries/tvseries_detail_page.dart';
+import 'package:ditonton/presentation/pages/tvseries/tvseries_search_page.dart';
 import 'package:ditonton/presentation/provider/tv_list_notifier.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../widgets/drawer.dart';
+import '../../widgets/drawer.dart';
 
 class HomeTvSeriesPage extends StatefulWidget {
   static const ROUTE_NAME = '/tvseries-homepage';

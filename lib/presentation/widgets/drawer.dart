@@ -2,9 +2,8 @@ import 'package:ditonton/presentation/pages/watchlist_page.dart';
 import 'package:flutter/material.dart';
 
 import '../pages/about_page.dart';
-import '../pages/home_movie_page.dart';
-import '../pages/home_tvseries_page.dart';
-import '../pages/watchlist_movies_page.dart';
+import '../pages/movie/home_movie_page.dart';
+import '../pages/tvseries/home_tvseries_page.dart';
 
 class DrawerBar extends StatelessWidget {
   const DrawerBar({Key? key}) : super(key: key);
