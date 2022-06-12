@@ -29,6 +29,7 @@ import 'package:ditonton/presentation/pages/tvseries/tvseries_search_page.dart';
 import 'package:ditonton/presentation/pages/movie/watchlist_movies_page.dart';
 import 'package:ditonton/presentation/pages/watchlist_page.dart';
 import 'package:ditonton/presentation/pages/tvseries/watchlist_tvseries_page.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -36,8 +37,10 @@ import 'package:provider/provider.dart';
 import 'package:ditonton/injection.dart' as di;
 
 void main() async {
-  di.init();
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
   await HttpSSLPinning.init();
+  di.init();
   runApp(MyApp());
 }
 

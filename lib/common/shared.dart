@@ -14,7 +14,7 @@ class Shared {
           .buffer
           .asUint8List();
       context.setTrustedCertificatesBytes(bytes);
-      log('createHttpClient() - cert added!');
+      log('createHttpClient() - certificate added!');
     } on TlsException catch (e) {
       if (e.osError?.message != null &&
           e.osError!.message.contains('CERT_ALREADY_IN_HASH_TABLE')) {
