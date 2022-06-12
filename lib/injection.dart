@@ -34,6 +34,13 @@ import 'package:ditonton/presentation/bloc/movie/movie_recommendation/movie_reco
 import 'package:ditonton/presentation/bloc/movie/movie_search/movie_search_bloc.dart';
 import 'package:ditonton/presentation/bloc/movie/movie_top_rated/movie_top_rated_bloc.dart';
 import 'package:ditonton/presentation/bloc/movie/movie_watchlist/movie_watchlist_bloc.dart';
+import 'package:ditonton/presentation/bloc/tvseries/tvseries_detail/series_detail_bloc.dart';
+import 'package:ditonton/presentation/bloc/tvseries/tvseries_list/series_now_playing_bloc.dart';
+import 'package:ditonton/presentation/bloc/tvseries/tvseries_popular/series_popular_bloc.dart';
+import 'package:ditonton/presentation/bloc/tvseries/tvseries_recommendation/series_recommendation_bloc.dart';
+import 'package:ditonton/presentation/bloc/tvseries/tvseries_search/series_search_bloc.dart';
+import 'package:ditonton/presentation/bloc/tvseries/tvseries_top_rated/series_top_rated_bloc.dart';
+import 'package:ditonton/presentation/bloc/tvseries/tvseries_watchlist/series_watchlist_bloc.dart';
 import 'package:ditonton/presentation/provider/popular_tv_notifier.dart';
 import 'package:ditonton/presentation/provider/top_rated_tvseries_notifier.dart';
 import 'package:ditonton/presentation/provider/tv_list_notifier.dart';
@@ -53,12 +60,31 @@ void init() {
   locator.registerFactory(() => MovieTopRatedBloc(locator()));
   locator.registerFactory(() => MovieRecommendationBloc(locator()));
   locator.registerFactory(() => MovieSearchBloc(locator()));
-  locator.registerFactory(() => MovieWatchlistBloc(
-        locator(),
-        locator(),
-        locator(),
-        locator(),
-      ));
+  locator.registerFactory(
+    () => MovieWatchlistBloc(
+      locator(),
+      locator(),
+      locator(),
+      locator(),
+    ),
+  );
+
+  // TV Series BLoC
+  locator.registerFactory(() => SeriesNowPlayingBloc(locator()));
+  locator.registerFactory(() => SeriesDetailBloc(locator()));
+  locator.registerFactory(() => SeriesPopularBloc(locator()));
+  locator.registerFactory(() => SeriesTopRatedBloc(locator()));
+  locator.registerFactory(() => SeriesRecommendationBloc(locator()));
+  locator.registerFactory(() => SeriesSearchBloc(locator()));
+  locator.registerFactory(
+    () => SeriesWatchlistBloc(
+      locator(),
+      locator(),
+      locator(),
+      locator(),
+    ),
+  );
+
   // provider
   locator.registerFactory(
     () => TvListNotifier(

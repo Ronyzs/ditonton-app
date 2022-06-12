@@ -7,6 +7,13 @@ import 'package:ditonton/presentation/bloc/movie/movie_recommendation/movie_reco
 import 'package:ditonton/presentation/bloc/movie/movie_search/movie_search_bloc.dart';
 import 'package:ditonton/presentation/bloc/movie/movie_top_rated/movie_top_rated_bloc.dart';
 import 'package:ditonton/presentation/bloc/movie/movie_watchlist/movie_watchlist_bloc.dart';
+import 'package:ditonton/presentation/bloc/tvseries/tvseries_detail/series_detail_bloc.dart';
+import 'package:ditonton/presentation/bloc/tvseries/tvseries_list/series_now_playing_bloc.dart';
+import 'package:ditonton/presentation/bloc/tvseries/tvseries_popular/series_popular_bloc.dart';
+import 'package:ditonton/presentation/bloc/tvseries/tvseries_recommendation/series_recommendation_bloc.dart';
+import 'package:ditonton/presentation/bloc/tvseries/tvseries_search/series_search_bloc.dart';
+import 'package:ditonton/presentation/bloc/tvseries/tvseries_top_rated/series_top_rated_bloc.dart';
+import 'package:ditonton/presentation/bloc/tvseries/tvseries_watchlist/series_watchlist_bloc.dart';
 import 'package:ditonton/presentation/pages/about_page.dart';
 import 'package:ditonton/presentation/pages/movie/movie_detail_page.dart';
 import 'package:ditonton/presentation/pages/movie/popular_movies_page.dart';
@@ -43,6 +50,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
+        // Movies State Management
         BlocProvider(
           create: (_) => di.locator<MovieNowPlayingBloc>(),
         ),
@@ -64,6 +72,31 @@ class MyApp extends StatelessWidget {
         BlocProvider(
           create: (_) => di.locator<MovieWatchlistBloc>(),
         ),
+
+        // TV Series State Management
+        BlocProvider(
+          create: (_) => di.locator<SeriesNowPlayingBloc>(),
+        ),
+        BlocProvider(
+          create: (_) => di.locator<SeriesDetailBloc>(),
+        ),
+        BlocProvider(
+          create: (_) => di.locator<SeriesPopularBloc>(),
+        ),
+        BlocProvider(
+          create: (_) => di.locator<SeriesTopRatedBloc>(),
+        ),
+        BlocProvider(
+          create: (_) => di.locator<SeriesRecommendationBloc>(),
+        ),
+        BlocProvider(
+          create: (_) => di.locator<SeriesSearchBloc>(),
+        ),
+        BlocProvider(
+          create: (_) => di.locator<SeriesWatchlistBloc>(),
+        ),
+
+        // Provider
         ChangeNotifierProvider(
           create: (_) => di.locator<TvSeriesSearchNotifier>(),
         ),

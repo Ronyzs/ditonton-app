@@ -1,9 +1,8 @@
 import 'package:ditonton/common/constants.dart';
-import 'package:ditonton/common/state_enum.dart';
-import 'package:ditonton/presentation/provider/tvseries_search_notifier.dart';
+import 'package:ditonton/presentation/bloc/tvseries/tvseries_search/series_search_bloc.dart';
 import 'package:ditonton/presentation/widgets/tvseries_card_list.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class TvSeriesSearchPage extends StatelessWidget {
   static const ROUTE_NAME = '/tvseries-search';
@@ -12,7 +11,7 @@ class TvSeriesSearchPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Search'),
+        title: Text('Search TV Series'),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -21,8 +20,7 @@ class TvSeriesSearchPage extends StatelessWidget {
           children: [
             TextField(
               onSubmitted: (query) {
-                Provider.of<TvSeriesSearchNotifier>(context, listen: false)
-                    .fetchTvSeriesSearch(query);
+                context.read<SeriesSearchBloc>().add(QuerySeriesChanged(query));
               },
               decoration: InputDecoration(
                 hintText: 'Search title',
@@ -36,24 +34,26 @@ class TvSeriesSearchPage extends StatelessWidget {
               'Search Result',
               style: kHeading6,
             ),
-            Consumer<TvSeriesSearchNotifier>(
-              builder: (context, data, child) {
-                if (data.state == RequestState.Loading) {
+            BlocBuilder<SeriesSearchBloc, SeriesSearchState>(
+              builder: (context, state) {
+                if (state is SeriesSearchLoading) {
                   return Center(
                     child: CircularProgressIndicator(),
                   );
-                } else if (data.state == RequestState.Loaded) {
-                  final result = data.searchResult;
+                } else if (state is SeriesSearchHasData) {
+                  final result = state.result;
                   return Expanded(
                     child: ListView.builder(
                       padding: const EdgeInsets.all(8),
                       itemBuilder: (context, index) {
-                        final series = data.searchResult[index];
+                        final series = result[index];
                         return TvSeriesCard(series);
                       },
                       itemCount: result.length,
                     ),
                   );
+                } else if (state is SeriesSearchError) {
+                  return Text(state.msg);
                 } else {
                   return Expanded(
                     child: Container(),

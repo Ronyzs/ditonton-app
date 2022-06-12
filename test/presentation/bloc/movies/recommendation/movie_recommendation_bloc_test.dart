@@ -30,26 +30,26 @@ void main() {
     },
   );
 
-  blocTest<MovieRecommendationBloc, MovieRecommendationState>(
-    'Should emit [Loading, HasData] when data is loaded successfully',
-    build: () {
-      when(mockGetMovieRecommendations.execute(testMovieDetail.id))
-          .thenAnswer((_) async => Right(testMovieList));
-      return movieRecommendationBloc;
-    },
-    act: (bloc) => bloc.add(FetchMovieRecommendation(testMovieDetail.id)),
-    expect: () => [
-      MovieRecommendationLoading(),
-      MovieRecommendationHasData(testMovieList)
-    ],
-    verify: (bloc) {
-      verify(mockGetMovieRecommendations.execute(testMovieDetail.id));
-    },
-  );
-
   group(
     'Recommendation movies BLoC test',
     () {
+      blocTest<MovieRecommendationBloc, MovieRecommendationState>(
+        'Should emit [Loading, HasData] when data is loaded successfully',
+        build: () {
+          when(mockGetMovieRecommendations.execute(testMovieDetail.id))
+              .thenAnswer((_) async => Right(testMovieList));
+          return movieRecommendationBloc;
+        },
+        act: (bloc) => bloc.add(FetchMovieRecommendation(testMovieDetail.id)),
+        expect: () => [
+          MovieRecommendationLoading(),
+          MovieRecommendationHasData(testMovieList)
+        ],
+        verify: (bloc) {
+          verify(mockGetMovieRecommendations.execute(testMovieDetail.id));
+        },
+      );
+
       blocTest<MovieRecommendationBloc, MovieRecommendationState>(
         'Should emit [Loading, Error] when fetch is unsuccessful',
         build: () {
