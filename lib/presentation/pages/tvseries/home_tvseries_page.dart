@@ -10,7 +10,6 @@ import 'package:ditonton/presentation/pages/tvseries/tvseries_detail_page.dart';
 import 'package:ditonton/presentation/pages/tvseries/tvseries_search_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 
 import '../../widgets/drawer.dart';
 
@@ -158,7 +157,6 @@ class TvList extends StatelessWidget {
             padding: const EdgeInsets.all(8),
             child: InkWell(
               onTap: () {
-                FirebaseCrashlytics.instance.crash();
                 Navigator.pushNamed(
                   context,
                   TvSeriesDetailPage.ROUTE_NAME,
