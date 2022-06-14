@@ -19,7 +19,7 @@ class TvSeriesSearchPage extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             TextField(
-              onSubmitted: (query) {
+              onChanged: (query) {
                 context.read<SeriesSearchBloc>().add(QuerySeriesChanged(query));
               },
               decoration: InputDecoration(
